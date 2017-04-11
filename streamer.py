@@ -1,5 +1,5 @@
-# BSD 3 clause
 # Authors: Ian Daniher <itdaniher@gmail.com>
+# License: BSD 3 clause
 import numpy as np
 
 import fm
