@@ -31,9 +31,12 @@ def rrcosfilter(N, alpha, Ts, Fs):
                     (numpy.pi*t*(1-(4*alpha*t/Ts)*(4*alpha*t/Ts))/Ts)
     return time_idx, h_rrc
 
-def symbol_recovery_24(xr, xdi, xdq):
+def symbol_recovery_24(xdi, xdq):
     """ period 24 pll by VT """
-    # binarize the phase modulation
+    angles = numpy.where(xdi >= 0, numpy.arctan2(xdq, xdi), numpy.arctan2(-xdq, -xdi))
+    theta = (signal.convolve(angles, smooth)) [-len(xdi):]
+
+    xr = (xdi + 1j * xdq) * numpy.exp(-1j * theta)
     bi = (numpy.real(xr) >= 0) + 0
     # pll parameters
     period = 24
@@ -52,7 +55,7 @@ def symbol_recovery_24(xr, xdi, xdq):
     theta = [0]
     shift = 0
 
-    # pll
+    # pll, system model, error calculation, estimate update
     for i in range(1, len(bi)):
         if bi[i-1] != bi[i]:
             if phase < halfPeriod-2:
@@ -91,28 +94,26 @@ def rds_crc(message, m_offset, mlen):
     """ public domain (?) minimum viable implementation of rds crc by grc authors etc """
     POLY = 0x5B9 # 10110111001, g(x)=x^10+x^8+x^7+x^5+x^4+x^3+1
     PLEN = 10
-    SYNDROME=[383, 14, 303, 663, 748]
-    OFFSET_NAME=['A', 'B', 'C', 'D', 'C\'']
+    CONSTANTS = [383, 14, 303, 663, 748]
+    OFFSET_NAME = ['A', 'B', 'C', 'D', 'C\'']
     reg = 0
-
     if((mlen != 16)and(mlen != 26)):
         raise ValueError
     # start calculation
     for i in range(mlen):
-        reg=(reg<<1)|(message[m_offset+i])
-        if(reg&(1<<PLEN)):
-            reg=reg^POLY
+        reg = (reg<<1)|(message[m_offset+i])
+        if (reg&(1<<PLEN)):
+            reg = reg^POLY
     for i in range(PLEN,0,-1):
-        reg=reg<<1
-        if(reg&(1<<PLEN)):
-            reg=reg^POLY
-    checkword=reg&((1<<PLEN)-1)
+        reg = reg<<1
+        if (reg&(1<<PLEN)):
+            reg = reg^POLY
+    checkword = reg&((1<<PLEN)-1)
     # end calculation
     for i in range(0,5):
-            if(checkword==SYNDROME[i]):
-                #print "checkword matches syndrome for offset", OFFSET_NAME[i]
+            if(checkword == CONSTANTS[i]):
+                #print "checkword matches constant table for offset", OFFSET_NAME[i]
                 return OFFSET_NAME[i]
-
     return None
 
 def _collect_bits(bitstream, offset, n):
@@ -199,7 +200,6 @@ def accumulate_radiotext(parses, cur_state = None):
                 cur_state[cursor+2] = decode[0]
                 cur_state[cursor+3] = decode[1]
                 retval.append("".join(cur_state))
-
             if blkid == "A" or blkid == "D":
                 cursor = None
     return retval
@@ -207,9 +207,7 @@ def accumulate_radiotext(parses, cur_state = None):
 def accumulate_b0text(parses, cur_state = None):
     if cur_state == None:
         cur_state = ["_"] * 8
-
     retval = [ "".join(cur_state) ]
-
     cursor = None
     for blkid, decode in parses:
         if blkid == "B":
@@ -227,11 +225,12 @@ def accumulate_b0text(parses, cur_state = None):
     return retval
 
 basebandBP = signal.remez(512, np.array([0, 53000, 54000, 60000, 61000, 256e3/2]), np.array([0, 1, 0]), Hz = 256000)
-filtLP = signal.remez(400, [0, 2400, 3000, 228e3//4], [1, 0], Hz=228e3//2)
+filtLP = signal.remez(400, [0, 2400, 3000, 228e3//4], [1, 0], Hz = 228e3//2)
 smooth = 1/200. * numpy.ones(200)
 pulseFilt = rrcosfilter(300, 1, 1/(2*1187.5), 228e3//2) [1]
 
 def demodulate_array(h):
+    # primary worker function, credit to all
     i = h[1:] * np.conj(h[:-1])
     j = np.angle(i)
 
@@ -243,10 +242,8 @@ def demodulate_array(h):
     # length modulo 4
     rdsBand = rdsBand[:(len(rdsBand)//4)*4]
     c57 = numpy.tile( [1., -1.], len(rdsBand)//4 )
-
     xi = rdsBand[::2] * c57
     xq = rdsBand[1::2] * (-c57)
-
     xfi = signal.convolve(xi, filtLP)
     xfq = signal.convolve(xq, filtLP)
     xsfi = signal.convolve(xfi, pulseFilt)
@@ -259,31 +256,24 @@ def demodulate_array(h):
     xdi = (xsfi[::2] + xsfi[1::2]) / 2
     xdq = xsfq[::2]
 
-    angles = numpy.where(xdi >= 0, numpy.arctan2(xdq, xdi), numpy.arctan2(-xdq, -xdi))
-
-    theta = (signal.convolve(angles, smooth)) [-len(xdi):]
-
-    xr = (xdi + 1j * xdq) * numpy.exp(-1j * theta)
-
-    res = symbol_recovery_24(xr, xdi, xdq)
-    my_hits = []
+    res = symbol_recovery_24(xdi, xdq)
+    hits = []
     for i in range(len(res)-26):
         h = rds_crc(res, i, 26)
         if h:
-            my_hits.append( (i, h) )
-
+            hits.append( (i, h) )
     hit_parses = []
-    for i in range(len(my_hits)-3):
-        if my_hits[i][1] == "A":
+    for i in range(len(hits)-3):
+        if hits[i][1] == "A":
             bogus = False
             for j,sp in enumerate("ABCD"):
-                if 26*j != my_hits[i+j][0] - my_hits[i][0]:
+                if 26*j != hits[i+j][0] - hits[i][0]:
                     bogus = True
-                if my_hits[i+j][1] != sp:
+                if hits[i+j][1] != sp:
                     bogus = True
             if not bogus:
                 for j in range(4):
-                    hit_parses.append( (my_hits[i+j][0], decode_one(res, my_hits[i+j][0])))
+                    hit_parses.append( (hits[i+j][0], decode_one(res, hits[i+j][0])))
 
     pprint.pprint(set(accumulate_radiotext([ b for (a,b) in hit_parses])))
     pprint.pprint(set(accumulate_b0text([ b for (a,b) in hit_parses])))
