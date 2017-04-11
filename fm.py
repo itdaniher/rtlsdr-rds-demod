@@ -1,13 +1,35 @@
 # Authors: Josh Myer <www.joshisanerd.com>, Veeresh Taranalli <veeresht@gmail.com>, Ian Daniher <itdaniher@gmail.com>
 # License: BSD 3-Clause
 
-from blocker import *
+from streamer import *
 from scipy import signal
 
 import numpy
 import math
 import cmath
 import pprint
+
+def rrcosfilter(N, alpha, Ts, Fs):
+    """ rrcos filter for reducing ISI by VT """
+    T_delta = 1/float(Fs)
+    time_idx = ((numpy.arange(N)-N/2))*T_delta
+    sample_num = numpy.arange(N)
+    h_rrc = numpy.zeros(N, dtype=float)
+    for x in sample_num:
+        t = (x-N/2)*T_delta
+        if t == 0.0:
+            h_rrc[x] = 1.0 - alpha + (4*alpha/numpy.pi)
+        elif alpha != 0 and t == Ts/(4*alpha):
+            h_rrc[x] = (alpha/numpy.sqrt(2))*(((1+2/numpy.pi)* \
+                    (numpy.sin(numpy.pi/(4*alpha)))) + ((1-2/numpy.pi)*(numpy.cos(numpy.pi/(4*alpha)))))
+        elif alpha != 0 and t == -Ts/(4*alpha):
+            h_rrc[x] = (alpha/numpy.sqrt(2))*(((1+2/numpy.pi)* \
+                    (numpy.sin(numpy.pi/(4*alpha)))) + ((1-2/numpy.pi)*(numpy.cos(numpy.pi/(4*alpha)))))
+        else:
+            h_rrc[x] = (numpy.sin(numpy.pi*t*(1-alpha)/Ts) +  \
+                    4*alpha*(t/Ts)*numpy.cos(numpy.pi*t*(1+alpha)/Ts))/ \
+                    (numpy.pi*t*(1-(4*alpha*t/Ts)*(4*alpha*t/Ts))/Ts)
+    return time_idx, h_rrc
 
 def symbol_recovery_24(xr, xdi, xdq):
     """ period 24 pll by VT """
@@ -65,7 +87,8 @@ def symbol_recovery_24(xr, xdi, xdq):
         phase += 1
     return res
 
-def rds_syndrome(message, m_offset, mlen):
+def rds_crc(message, m_offset, mlen):
+    """ public domain (?) minimum viable implementation of rds crc by grc authors etc """
     POLY = 0x5B9 # 10110111001, g(x)=x^10+x^8+x^7+x^5+x^4+x^3+1
     PLEN = 10
     SYNDROME=[383, 14, 303, 663, 748]
@@ -138,7 +161,7 @@ def decode_D(bitstream, offset):
 decoders = { "A": decode_A, "B": decode_B, "C": decode_C, "C'": decode_Cp, "D": decode_D }
 
 def decode_one(bitstream, offset):
-    s = rds_syndrome(bitstream, offset, 26)
+    s = rds_crc(bitstream, offset, 26)
     if None == s:
         return None
 
@@ -203,27 +226,6 @@ def accumulate_b0text(parses, cur_state = None):
                 cursor = None
     return retval
 
-def rrcosfilter(N, alpha, Ts, Fs):
-    T_delta = 1/float(Fs)
-    time_idx = ((numpy.arange(N)-N/2))*T_delta
-    sample_num = numpy.arange(N)
-    h_rrc = numpy.zeros(N, dtype=float)
-    for x in sample_num:
-        t = (x-N/2)*T_delta
-        if t == 0.0:
-            h_rrc[x] = 1.0 - alpha + (4*alpha/numpy.pi)
-        elif alpha != 0 and t == Ts/(4*alpha):
-            h_rrc[x] = (alpha/numpy.sqrt(2))*(((1+2/numpy.pi)* \
-                    (numpy.sin(numpy.pi/(4*alpha)))) + ((1-2/numpy.pi)*(numpy.cos(numpy.pi/(4*alpha)))))
-        elif alpha != 0 and t == -Ts/(4*alpha):
-            h_rrc[x] = (alpha/numpy.sqrt(2))*(((1+2/numpy.pi)* \
-                    (numpy.sin(numpy.pi/(4*alpha)))) + ((1-2/numpy.pi)*(numpy.cos(numpy.pi/(4*alpha)))))
-        else:
-            h_rrc[x] = (numpy.sin(numpy.pi*t*(1-alpha)/Ts) +  \
-                    4*alpha*(t/Ts)*numpy.cos(numpy.pi*t*(1+alpha)/Ts))/ \
-                    (numpy.pi*t*(1-(4*alpha*t/Ts)*(4*alpha*t/Ts))/Ts)
-    return time_idx, h_rrc
-
 basebandBP = signal.remez(512, np.array([0, 53000, 54000, 60000, 61000, 256e3/2]), np.array([0, 1, 0]), Hz = 256000)
 filtLP = signal.remez(400, [0, 2400, 3000, 228e3//4], [1, 0], Hz=228e3//2)
 smooth = 1/200. * numpy.ones(200)
@@ -266,7 +268,7 @@ def demodulate_array(h):
     res = symbol_recovery_24(xr, xdi, xdq)
     my_hits = []
     for i in range(len(res)-26):
-        h = rds_syndrome(res, i, 26)
+        h = rds_crc(res, i, 26)
         if h:
             my_hits.append( (i, h) )
 
