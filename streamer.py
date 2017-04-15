@@ -41,7 +41,7 @@ def packed_bytes_to_iq(samples, out = None):
 
 async def process_samples(sdr):
     connection = await asyncio_redis.Connection.create('localhost', 6379, encoder = CborEncoder())
-    (block_size, max_blocks) = (1024*32, 127)
+    (block_size, max_blocks) = (1024*32, 4)
     samp_size = block_size // 2
     count = 0
     last = time.time()

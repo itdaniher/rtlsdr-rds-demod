@@ -139,7 +139,7 @@ def decode_B(bitstream, offset):
         retval["text_segment"] = _collect_bits(bitstream, offset+12, 4)
     elif retval["group_type"] == 0:
         retval["text_AB"] = bitstream[offset+11]
-        retval["text_segment"] = _collect_bits(bitstream, offset+14, 2)
+        retval["text_segment"] = _collect_bits(bitstream, offset+13, 3)
 
     return retval
 
@@ -188,8 +188,9 @@ class SoftLCD:
                     char_offset = block['text_segment'] * 4
                 if group_type == 0:
                     char_offset = block['text_segment'] * 2
+            if blkid == "B" and block['group_type'] == 2:
                 if block['text_AB'] != self.last_value:
-                    #self.cur_state = ["_"] * 64
+                    self.cur_state = ["_"] * 64
                     self.last_value = block['text_AB']
             if (char_offset is not None) and (blkid == "C") and (group_type == 0) and (block_version == 'B'):
                 self.PIs.append((ord(block['B1'])<<8)+ord(block['B0']))
@@ -197,14 +198,15 @@ class SoftLCD:
                 if block['ID'] == "C":
                     self.cur_state[char_offset] = block['B0']
                     self.cur_state[char_offset+1] = block['B1']
-                    print("C", ''.join(self.cur_state))
+                    print("C2", ''.join(self.cur_state))
                 elif block['ID'] == "D":
                     self.cur_state[char_offset+2] = block['B0']
                     self.cur_state[char_offset+3] = block['B1']
-                    print("D", ''.join(self.cur_state))
+                    print("D2", ''.join(self.cur_state))
                     char_offset = None
             if char_offset is not None and group_type == 0:
                 if block['ID'] == "D":
+                    print("D0", ''.join(self.cur_state))
                     self.cur_state[char_offset] = block['B0']
                     self.cur_state[char_offset+1] = block['B1']
                     char_offset = None
