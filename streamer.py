@@ -41,7 +41,7 @@ def packed_bytes_to_iq(samples, out = None):
 
 async def process_samples(sdr):
     connection = await asyncio_redis.Connection.create('localhost', 6379, encoder = CborEncoder())
-    (block_size, max_blocks) = (1024*32, 4)
+    (block_size, max_blocks) = (1024*32, 3)
     samp_size = block_size // 2
     count = 0
     last = time.time()
@@ -90,7 +90,6 @@ async def decoder_main():
         timestamp = timestamp.value
         info = await connection.get(timestamp)
         fm.demodulate_array(decompress(**info), softlcd)
-        print(''.join(softlcd.cur_state))
 
 def spawner(future_yielder):
     def loopwrapper(main):

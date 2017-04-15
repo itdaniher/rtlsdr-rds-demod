@@ -139,7 +139,7 @@ def decode_B(bitstream, offset):
         retval["text_segment"] = _collect_bits(bitstream, offset+12, 4)
     elif retval["group_type"] == 0:
         retval["text_AB"] = bitstream[offset+11]
-        retval["text_segment"] = _collect_bits(bitstream, offset+13, 3)
+        retval["text_segment"] = _collect_bits(bitstream, offset+14, 2)
 
     return retval
 
@@ -169,48 +169,56 @@ def decode_one(bitstream, offset):
 
 class SoftLCD:
     def __init__(self):
-        self.cur_state = ["_"] * 64
+        self.cur_state = [["_"] * 64,["_"] * 64]
+        self.prog_name = [["_"] * 8, ["_"] * 8]
         self.PIs = []
-        self.last_value = 0
 
     def update_state(self, blocks):
         block_version = None
         char_offset = None
+        group_type = None
+        last_AB = {0: None, 2: None, None:None}
+        curr_AB = {0: None, 2: None, None:None}
         for block in blocks:
             blkid = block['ID']
+            print(block)
             if blkid == "A":
                 self.PIs.append(block['PI'])
                 char_offset = None
-            if blkid == "B" and block['group_type'] in [0,2]:
+            if blkid == "B":
                 group_type = block['group_type']
                 block_version = block['version_AB']
-                if group_type == 2:
-                    char_offset = block['text_segment'] * 4
-                if group_type == 0:
-                    char_offset = block['text_segment'] * 2
-            if blkid == "B" and block['group_type'] == 2:
-                if block['text_AB'] != self.last_value:
-                    self.cur_state = ["_"] * 64
-                    self.last_value = block['text_AB']
+            if blkid == "B" and group_type == 0:
+                curr_AB[group_type] = block['text_AB']
+                char_offset = block['text_segment'] * 2
+            if blkid == "B" and group_type == 2:
+                curr_AB[group_type] = block['text_AB']
+                char_offset = block['text_segment'] * 4
+                #if curr_AB[2] != last_AB[2]:
+                #    self.cur_state = ["_"] * 64
+                #    last_AB[group_type] = curr_AB
             if (char_offset is not None) and (blkid == "C") and (group_type == 0) and (block_version == 'B'):
                 self.PIs.append((ord(block['B1'])<<8)+ord(block['B0']))
-            if char_offset is not None and group_type == 2:
-                if block['ID'] == "C":
-                    self.cur_state[char_offset] = block['B0']
-                    self.cur_state[char_offset+1] = block['B1']
-                    print("C2", ''.join(self.cur_state))
-                elif block['ID'] == "D":
-                    self.cur_state[char_offset+2] = block['B0']
-                    self.cur_state[char_offset+3] = block['B1']
-                    print("D2", ''.join(self.cur_state))
-                    char_offset = None
-            if char_offset is not None and group_type == 0:
-                if block['ID'] == "D":
-                    print("D0", ''.join(self.cur_state))
-                    self.cur_state[char_offset] = block['B0']
-                    self.cur_state[char_offset+1] = block['B1']
-                    char_offset = None
-            print(block)
+            if char_offset is not None and (blkid == "C") and (group_type == 2):
+                self.cur_state[curr_AB[group_type]][char_offset] = block['B0']
+                self.cur_state[curr_AB[group_type]][char_offset+1] = block['B1']
+            if char_offset is not None and (blkid == "D") and (group_type == 2):
+                self.cur_state[curr_AB[group_type]][char_offset+2] = block['B0']
+                self.cur_state[curr_AB[group_type]][char_offset+3] = block['B1']
+            if (char_offset is not None) and (blkid == "D")  and (group_type == 0) and (block_version == 'B'):
+                self.cur_state[curr_AB[group_type]][char_offset] = block['B0']
+                self.cur_state[curr_AB[group_type]][char_offset+1] = block['B1']
+            if (char_offset is not None) and (blkid == "D")  and (group_type == 0) and (block_version == 'A'):
+                self.prog_name[curr_AB[group_type]][char_offset] = block['B0']
+                self.prog_name[curr_AB[group_type]][char_offset+1] = block['B1']
+            if group_type in (0,2):
+                print(blkid, group_type, curr_AB[group_type], block_version)
+            print('\n'.join([''.join(x) for x in self.cur_state]))
+            print('\n'.join([''.join(x) for x in self.prog_name]))
+            if blkid == "D":
+                group_type == None
+                char_offset = None
+
 
 basebandBP = signal.remez(512, np.array([0, 53000, 54000, 60000, 61000, 256e3/2]), np.array([0, 1, 0]), Hz = 256000)
 filtLP = signal.remez(400, [0, 2400, 3000, 228e3//4], [1, 0], Hz = 228e3//2)
