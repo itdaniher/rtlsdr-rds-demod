@@ -43,7 +43,7 @@ async def process_samples(sdr):
     connection = await asyncio_redis.Connection.create('localhost', 6379, encoder = CborEncoder())
     (block_size, max_blocks) = (1024*32, 127)
     samp_size = block_size // 2
-    count = 0 
+    count = 0
     last = time.time()
     block = []
     async for byte_samples in sdr.stream(block_size, format = 'bytes'):
@@ -70,8 +70,8 @@ async def blocker_main():
 
     print('Configuring SDR...')
     sdr.rs = 256000
-    sdr.fc = 89.7e6 
-    sdr.gain = 50 
+    sdr.fc = 102.5e6
+    sdr.gain = 50
     print('  sample rate: %0.3f MHz' % (sdr.rs/1e6))
     print('  center frequency %0.6f MHz' % (sdr.fc/1e6))
     print('  gain: %s dB' % sdr.gain)
@@ -84,11 +84,13 @@ async def blocker_main():
 
 async def decoder_main():
     connection = await asyncio_redis.Connection.create('localhost', 6379, encoder = CborEncoder())
+    softlcd = fm.SoftLCD()
     while True:
         timestamp = await connection.brpop(['timestamps'], 360)
         timestamp = timestamp.value
         info = await connection.get(timestamp)
-        fm.demodulate_array(decompress(**info))
+        fm.demodulate_array(decompress(**info), softlcd)
+        print(''.join(softlcd.cur_state))
 
 def spawner(future_yielder):
     def loopwrapper(main):

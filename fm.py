@@ -117,46 +117,45 @@ def rds_crc(message, m_offset, mlen):
     return None
 
 def _collect_bits(bitstream, offset, n):
-    """Helper method to collect a string of n bits, MSB, into an int"""
+    """Helper method to collect a list of n bits, MSB, into an int"""
     retval = 0
     for i in range(n):
         retval = retval*2 + bitstream[offset+i]
     return retval
 
 def decode_A(bitstream, offset):
-    """Trivial RDS block A decoder"""
-    return _collect_bits(bitstream, offset, 16)
+    return {'ID':'A', 'PI': _collect_bits(bitstream, offset, 16)}
 
 def decode_B(bitstream, offset):
-    """Trivial RDS block B decoder"""
-    retval = {}
+    retval = {'ID':'B'}
 
     retval["group_type"] = _collect_bits(bitstream, offset, 4)
     retval["version_AB"] = "B" if bitstream[offset+4] else "A"
     retval["traffic_prog_code"] = bitstream[offset+5]
-    retval["prog_type"] = _collect_bits(bitstream, offset+6,5)
+    retval["prog_type"] = _collect_bits(bitstream, offset+6,4)
 
     if retval["group_type"] == 2:
+        retval["text_AB"] = bitstream[offset+11]
         retval["text_segment"] = _collect_bits(bitstream, offset+12, 4)
     elif retval["group_type"] == 0:
-        retval["pi_segment"] = _collect_bits(bitstream, offset+14, 2)
+        retval["text_AB"] = bitstream[offset+11]
+        retval["text_segment"] = _collect_bits(bitstream, offset+14, 2)
 
     return retval
 
 def decode_C(bitstream, offset):
-    """Trivial RDS block C decoder"""
     c0 = _collect_bits(bitstream, offset, 8)
     c1 = _collect_bits(bitstream, offset+8, 8)
-
-    return ( chr(c0), chr(c1))
+    return {'ID': 'C', 'B0': chr(c0), 'B1':chr(c1)}
 
 def decode_Cp(bitstream, offset):
     """Stub RDS block C decoder"""
     return None
 
 def decode_D(bitstream, offset):
-    """Trivial RDS block D decoder"""
-    return decode_C(bitstream, offset)
+    c0 = _collect_bits(bitstream, offset, 8)
+    c1 = _collect_bits(bitstream, offset+8, 8)
+    return {'ID': 'D', 'B0': chr(c0), 'B1':chr(c1)}
 
 # A lookup table to make it easier to dispatch to subroutines in the code below
 decoders = { "A": decode_A, "B": decode_B, "C": decode_C, "C'": decode_Cp, "D": decode_D }
@@ -165,71 +164,58 @@ def decode_one(bitstream, offset):
     s = rds_crc(bitstream, offset, 26)
     if None == s:
         return None
+    return decoders[s](bitstream, offset)
 
-    return (s, decoders[s](bitstream, offset))
 
-def accumulate_radiotext(parses, cur_state = None):
-    """A state machine that accumulates the radio text messages
+class SoftLCD:
+    def __init__(self):
+        self.cur_state = ["_"] * 64
+        self.PIs = []
+        self.last_value = 0
 
-    This takes in a whole list of packet-qualifying blocks (ie:
-    a list of blocks, but which have been filtered down such that
-    they always come in ABCD or ABC'D order, and each quad is
-    adjacent in the bitstream).
-
-    Returns a list of states of the radio text as it progresses
-    through consuming the input packets.
-    """
-    if cur_state == None:
-        cur_state = ["_"] * 64
-
-    retval = [ "".join(cur_state) ]
-
-    cursor = None
-    for blkid, decode in parses:
-        if blkid == "B":
-            if decode['group_type'] == 2:
-                cursor = decode['text_segment'] * 4
-            else:
-                cursor = None
-        if None != cursor:
-            if blkid == "C":
-                cur_state[cursor] = decode[0]
-                cur_state[cursor+1] = decode[1]
-                retval.append("".join(cur_state))
-            elif blkid == "D":
-                cur_state[cursor+2] = decode[0]
-                cur_state[cursor+3] = decode[1]
-                retval.append("".join(cur_state))
-            if blkid == "A" or blkid == "D":
-                cursor = None
-    return retval
-
-def accumulate_b0text(parses, cur_state = None):
-    if cur_state == None:
-        cur_state = ["_"] * 8
-    retval = [ "".join(cur_state) ]
-    cursor = None
-    for blkid, decode in parses:
-        if blkid == "B":
-            if decode['group_type'] == 0:
-                cursor = decode['pi_segment'] * 2
-            else:
-                cursor = None
-        if None != cursor:
-            if blkid == "D":
-                cur_state[cursor] = decode[0]
-                cur_state[cursor+1] = decode[1]
-                retval.append("".join(cur_state))
-            if blkid == "A" or blkid == "D":
-                cursor = None
-    return retval
+    def update_state(self, blocks):
+        block_version = None
+        char_offset = None
+        for block in blocks:
+            blkid = block['ID']
+            if blkid == "A":
+                self.PIs.append(block['PI'])
+                char_offset = None
+            if blkid == "B" and block['group_type'] in [0,2]:
+                group_type = block['group_type']
+                block_version = block['version_AB']
+                if group_type == 2:
+                    char_offset = block['text_segment'] * 4
+                if group_type == 0:
+                    char_offset = block['text_segment'] * 2
+                if block['text_AB'] != self.last_value:
+                    #self.cur_state = ["_"] * 64
+                    self.last_value = block['text_AB']
+            if (char_offset is not None) and (blkid == "C") and (group_type == 0) and (block_version == 'B'):
+                self.PIs.append((ord(block['B1'])<<8)+ord(block['B0']))
+            if char_offset is not None and group_type == 2:
+                if block['ID'] == "C":
+                    self.cur_state[char_offset] = block['B0']
+                    self.cur_state[char_offset+1] = block['B1']
+                    print("C", ''.join(self.cur_state))
+                elif block['ID'] == "D":
+                    self.cur_state[char_offset+2] = block['B0']
+                    self.cur_state[char_offset+3] = block['B1']
+                    print("D", ''.join(self.cur_state))
+                    char_offset = None
+            if char_offset is not None and group_type == 0:
+                if block['ID'] == "D":
+                    self.cur_state[char_offset] = block['B0']
+                    self.cur_state[char_offset+1] = block['B1']
+                    char_offset = None
+            print(block)
 
 basebandBP = signal.remez(512, np.array([0, 53000, 54000, 60000, 61000, 256e3/2]), np.array([0, 1, 0]), Hz = 256000)
 filtLP = signal.remez(400, [0, 2400, 3000, 228e3//4], [1, 0], Hz = 228e3//2)
 smooth = 1/200. * numpy.ones(200)
 pulseFilt = rrcosfilter(300, 1, 1/(2*1187.5), 228e3//2) [1]
 
-def demodulate_array(h):
+def demodulate_array(h, soft_lcd):
     # primary worker function, credit to all
     i = h[1:] * np.conj(h[:-1])
     j = np.angle(i)
@@ -262,7 +248,7 @@ def demodulate_array(h):
         h = rds_crc(res, i, 26)
         if h:
             hits.append( (i, h) )
-    hit_parses = []
+    packets = []
     for i in range(len(hits)-3):
         if hits[i][1] == "A":
             bogus = False
@@ -273,14 +259,15 @@ def demodulate_array(h):
                     bogus = True
             if not bogus:
                 for j in range(4):
-                    hit_parses.append( (hits[i+j][0], decode_one(res, hits[i+j][0])))
-
-    pprint.pprint(set(accumulate_radiotext([ b for (a,b) in hit_parses])))
-    pprint.pprint(set(accumulate_b0text([ b for (a,b) in hit_parses])))
+                    packets.append(decode_one(res, hits[i+j][0]))
+    soft_lcd.update_state(packets)
 
 if __name__ == "__main__":
     import sys
+    softlcd = SoftLCD()
     f = open(sys.argv[-1].encode('utf-8'), 'rb')
     g = cbor.loads(f.read())
     h = decompress(**g)
-    demodulate_array(h)
+    demodulate_array(h, softlcd)
+    print(''.join(softlcd.cur_state))
+    print(''.join(softlcd.station_name))
