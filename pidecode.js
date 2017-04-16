@@ -1,6 +1,20 @@
+function chx(x)
+{
+	return String.fromCharCode(x)
+}
+
+function getfloor(x)
+{
+	return Math.floor(x)
+}
+
+function hex2dec(hex)
+{
+	return parseInt(hex,16)
+}
 function RDSCall(obj)
 {
-	picode=obj.picode.value.toUpperCase()
+	picode=obj.toUpperCase()
 	if (picode.substr(0,2)=="AF") {
 		part1=picode.substr(2,2)
 		part2="00"
@@ -416,5 +430,7 @@ function RDSCall(obj)
 					csign="XHSR";
 					break;
 			}
-	obj.csign.value=csign
+	//obj.csign.value=csign
+	return csign;
 }
+console.log(RDSCall('64A1'))
