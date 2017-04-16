@@ -7,7 +7,9 @@ from scipy import signal
 import numpy
 import math
 import cmath
+import statistics
 import pprint
+import picode
 
 def rrcosfilter(N, alpha, Ts, Fs):
     """ rrcos filter for reducing ISI by VT """
@@ -172,13 +174,15 @@ class SoftLCD:
         self.cur_state = [["_"] * 64,["_"] * 64]
         self.prog_name = [["_"] * 8, ["_"] * 8]
         self.PIs = []
+        self.PI = None
+        self.callsign = None
 
     def update_state(self, blocks):
         block_version = None
         char_offset = None
         group_type = None
-        last_AB = {0: None, 2: None, None:None}
         curr_AB = {0: None, 2: None, None:None}
+        last_AB = {0: None, 2: None, None:None}
         for block in blocks:
             blkid = block['ID']
             print(block)
@@ -192,11 +196,11 @@ class SoftLCD:
                 curr_AB[group_type] = block['text_AB']
                 char_offset = block['text_segment'] * 2
             if blkid == "B" and group_type == 2:
-                curr_AB[group_type] = block['text_AB']
                 char_offset = block['text_segment'] * 4
-                #if curr_AB[2] != last_AB[2]:
-                #    self.cur_state = ["_"] * 64
-                #    last_AB[group_type] = curr_AB
+                if (curr_AB[group_type] != None)  and (block['text_AB'] != curr_AB[group_type]) and (char_offset == 0) and (block_version == 'A'):
+                    print("CLEARING")
+                    self.cur_state[curr_AB[group_type]^1] = ['_']*64
+                curr_AB[group_type] = block['text_AB']
             if (char_offset is not None) and (blkid == "C") and (group_type == 0) and (block_version == 'B'):
                 self.PIs.append((ord(block['B1'])<<8)+ord(block['B0']))
             if char_offset is not None and (blkid == "C") and (group_type == 2):
@@ -211,13 +215,19 @@ class SoftLCD:
             if (char_offset is not None) and (blkid == "D")  and (group_type == 0) and (block_version == 'A'):
                 self.prog_name[curr_AB[group_type]][char_offset] = block['B0']
                 self.prog_name[curr_AB[group_type]][char_offset+1] = block['B1']
-            if group_type in (0,2):
-                print(blkid, group_type, curr_AB[group_type], block_version)
-            print('\n'.join([''.join(x) for x in self.cur_state]))
-            print('\n'.join([''.join(x) for x in self.prog_name]))
+            #if group_type in (0,2):
+            #    print(blkid, group_type, curr_AB[group_type], block_version)
+            #print('\n'.join([''.join(x) for x in self.prog_name]))
             if blkid == "D":
+                print('\n'.join([''.join(x) for x in self.cur_state]).replace('\r','╳'))
                 group_type == None
                 char_offset = None
+                try:
+                    self.PI = hex(statistics.mode(self.PIs))[2:]
+                except statistics.StatisticsError:
+                    self.PI = hex(self.PIs[0])[2:]
+                self.callsign = picode.rdscall(self.PI)
+                print(self.callsign)
 
 
 basebandBP = signal.remez(512, np.array([0, 53000, 54000, 60000, 61000, 256e3/2]), np.array([0, 1, 0]), Hz = 256000)
