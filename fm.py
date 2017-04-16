@@ -1,4 +1,4 @@
-# Authors: Josh Myer <www.joshisanerd.com>, Veeresh Taranalli <veeresht@gmail.com>, Ian Daniher <itdaniher@gmail.com>
+# Authors: Ian Daniher
 # License: BSD 3-Clause
 
 from streamer import *
@@ -8,7 +8,6 @@ import numpy
 import math
 import cmath
 import statistics
-import pprint
 import picode
 
 def rrcosfilter(N, alpha, Ts, Fs):
@@ -34,7 +33,6 @@ def rrcosfilter(N, alpha, Ts, Fs):
     return time_idx, h_rrc
 
 def symbol_recovery_24(xdi, xdq):
-    """ period 24 pll by VT """
     angles = numpy.where(xdi >= 0, numpy.arctan2(xdq, xdi), numpy.arctan2(-xdq, -xdi))
     theta = (signal.convolve(angles, smooth)) [-len(xdi):]
 
@@ -185,7 +183,6 @@ class SoftLCD:
         last_AB = {0: None, 2: None, None:None}
         for block in blocks:
             blkid = block['ID']
-            print(block)
             if blkid == "A":
                 self.PIs.append(block['PI'])
                 char_offset = None
@@ -213,10 +210,11 @@ class SoftLCD:
                 self.cur_state[curr_AB[group_type]][char_offset] = block['B0']
                 self.cur_state[curr_AB[group_type]][char_offset+1] = block['B1']
             if (char_offset is not None) and (blkid == "D")  and (group_type == 0) and (block_version == 'A'):
-                self.prog_name[curr_AB[group_type]][char_offset] = block['B0']
-                self.prog_name[curr_AB[group_type]][char_offset+1] = block['B1']
-            #if group_type in (0,2):
-            #    print(blkid, group_type, curr_AB[group_type], block_version)
+                self.cur_state[curr_AB[group_type]][char_offset+10] = block['B0']
+                self.cur_state[curr_AB[group_type]][char_offset+11] = block['B1']
+            if group_type in (0,2):
+                #print(blkid, group_type, curr_AB[group_type], block_version)
+                print(' '.join([str(x) for x in block.values()]))
             #print('\n'.join([''.join(x) for x in self.prog_name]))
             if blkid == "D":
                 print('\n'.join([''.join(x) for x in self.cur_state]).replace('\r','╳'))
@@ -290,4 +288,3 @@ if __name__ == "__main__":
     h = decompress(**g)
     demodulate_array(h, softlcd)
     print(''.join(softlcd.cur_state))
-    print(''.join(softlcd.station_name))

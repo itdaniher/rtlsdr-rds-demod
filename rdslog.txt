@@ -1,0 +1,1101 @@
+B 2 A 0 5 0 10
+C e r
+D r y
+________________________________________erry____________________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 0
+C Í Í
+D B A
+__________BA____________________________erry____________________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D N D
+__________BAND__________________________erry____________________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 11
+C   o
+D n  
+__________BAND__________________________erry on ________________
+________________________________________________________________
+WKLB
+__________BAND__________________________erry on ________________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+__________BAND__  ______________________erry on ________________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B A
+__________BAND__  ______________________erry on ________________
+________________________________________________________________
+WKLB
+A 42799
+__________BAND__  ______________________erry on ________________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 12
+C W K
+D L B
+__________BAND__  ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+__________BAND__  ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+__________BAND__  ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D    
+__________BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+__________BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+__________BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+__________BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 0
+C N o
+D w  
+Now ______BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D N D
+Now ______BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+Now ______BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+Now ______BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 1
+C p l
+D a y
+Now play__BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now play__BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+Now play__BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 3
+C B e
+D t t
+Now play__BABett  ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 1
+C Í Í
+D N D
+Now play__BANDtt  ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D    
+Now play__BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+Now play__BAND    ______________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 4
+C e r
+D   D
+Now play__BAND  er D____________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B A
+Now play__BAND  er D____________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 5
+C i g
+D   T
+Now play__BAND  er Dig T________________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now play__PEND  er Dig T________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D R R
+Now play__PERR  er Dig T________________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 6
+C w o
+D   b
+Now play__PERR  er Dig Two b____________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+Now play__PERR  er Dig Two b____________erry on WKLB____________
+________________________________________________________________
+WKLB
+Now play__PERR  er Dig Two b____________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now play__PERR     Dig Two b____________erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 7
+C y  
+D T h
+Now play__PERR     Dig Two by Th________erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 8
+C e  
+D B a
+Now play__PERR     Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+Now play__PERR     Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D R R
+Now play__PERR     Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 10
+C e r
+D r y
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 12
+C W K
+D L B
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+A 42799
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now play__PERRY    Dig Two by The Ba____erry on WKLB____________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 13
+C   
+D    
+Now play__PERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 0
+C N o
+D w  
+Now play__PERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now play__PERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 1
+C p l
+D a y
+Now play__PERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 1
+C Í Í
+D R R
+Now play__PERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now play__BERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now play__BERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now play__BERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 2
+C i n
+D g  
+Now playing RRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playing RRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 3
+C B e
+D t t
+Now playing Bett   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now playinBEBett   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D T T
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 6
+C w o
+D   b
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D T T
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 7
+C y  
+D T h
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 10
+C e r
+D r y
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D T T
+Now playinBETTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D D I
+Now playinDITTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 12
+C W K
+D L B
+Now playinDITTtt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 1
+C Í Í
+D G  
+Now playinDIG tt   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D T W
+Now playinDIG TW   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 13
+C   
+D    
+Now playinDIG TW   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D D I
+Now playinDIG TW   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D G  
+Now playinDIG TW   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinDIG TW   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D T W
+Now playinDIG TW   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D O  
+Now playinDIG TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 1
+C p l
+D a y
+Now playinDIG TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinDIG TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D G  
+Now playinDIG TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 2
+C i n
+D g  
+Now playing G TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D T W
+Now playing G TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playing G TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playing G TWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 3
+C B e
+D t t
+Now playing BettO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D D I
+Now playinDIBettO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinDIBettO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 5
+C i g
+D   T
+Now playinDIBettO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 2
+C Í Í
+D T W
+Now playinDIBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D O  
+Now playinDIBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinDIBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinDIBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 6
+C w o
+D   b
+Now playinDIBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D W K
+Now playinWKBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinWKBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 7
+C y  
+D T h
+Now playinWKBeTWO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 2
+C Í Í
+D   T
+Now playinWKBe TO  Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D H E
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D W K
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 10
+C e r
+D r y
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 2
+C Í Í
+D   T
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D H E
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D W K
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D   T
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 12
+C W K
+D L B
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D W K
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 0
+C N o
+D w  
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D H E
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 1
+C p l
+D a y
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKBe THE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 3
+C B e
+D t t
+Now playinWKBettHE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 1
+C Í Í
+D N D
+Now playinWKNDttHE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D    
+Now playinWKND  HE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinWKND  HE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinWKND  HE Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 4
+C e r
+D   D
+Now playinWKND  er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B A
+Now playinBAND  er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D N D
+Now playinBAND  er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 5
+C i g
+D   T
+Now playinBAND  er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBAND  er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 6
+C w o
+D   b
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D N D
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 7
+C y  
+D T h
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 8
+C e  
+D B a
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B A
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D    
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 10
+C e r
+D r y
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B A
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D N D
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 12
+C W K
+D L B
+Now playinBAND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now playinPEND     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D R R
+Now playinPERR     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinPERR     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 0
+C N o
+D w  
+Now playinPERR     Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 1
+C p l
+D a y
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D R R
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now playinPERRY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 3
+C B e
+D t t
+Now playinPEBett   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinPEBett   Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now playinPEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 4
+C e r
+D   D
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 5
+C i g
+D   T
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 6
+C w o
+D   b
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 2
+C Í Í
+D Y  
+Now playinPEBeY er Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinPEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D P E
+Now playinPEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinPEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinPEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 8
+C e  
+D B a
+Now playinPEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now playinBEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBEBeY    Dig Two by The Ba____erry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 9
+C n d
+D   P
+Now playinBEBeY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBEBeY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBEBeY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBEBeY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now playinBEBeY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D T T
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 2 A 0 5 0 12
+C W K
+D L B
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+A 42799
+B 2 A 0 5 0 13
+C   
+D    
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D T T
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 3
+C Í Í
+D    
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 0
+C Í Í
+D B E
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
+WKLB
+B 0 A 0 5 0 1
+C Í Í
+D T T
+Now playinBETTY    Dig Two by The Band Perry on WKLB╳   ________
+________________________________________________________________
