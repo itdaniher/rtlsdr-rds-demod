@@ -1,4 +1,4 @@
-# Authors: Ian Daniher
+# Authors: Ian Daniher, et al
 # License: BSD 3-Clause
 
 from streamer import *
