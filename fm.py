@@ -287,4 +287,3 @@ if __name__ == "__main__":
     g = cbor.loads(f.read())
     h = decompress(**g)
     demodulate_array(h, softlcd)
-    print(''.join(softlcd.cur_state))
