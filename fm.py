@@ -266,7 +266,9 @@ def demodulate_array(h, soft_lcd):
         h = rds_crc(res, i, 26)
         if h:
             hits.append( (i, h) )
+    print(res,hits)
     packets = []
+    print([decode_one(res, x[0]) for x in hits if x[1] == 'A'])
     for i in range(len(hits)-3):
         if hits[i][1] == "A":
             bogus = False

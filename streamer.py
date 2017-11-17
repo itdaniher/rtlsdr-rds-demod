@@ -41,27 +41,31 @@ def packed_bytes_to_iq(samples, out = None):
 
 async def process_samples(sdr):
     connection = await asyncio_redis.Connection.create('localhost', 6379, encoder = CborEncoder())
-    (block_size, max_blocks) = (1024*32, 3)
+    (block_size, max_blocks) = (1024*32, 1)
     samp_size = block_size // 2
     count = 0
     last = time.time()
     block = []
+    blocks = 16
     async for byte_samples in sdr.stream(block_size, format = 'bytes'):
         complex_samples = np.empty(samp_size, 'complex64')
         packed_bytes_to_iq(byte_samples, complex_samples)
         block.append(np.copy(complex_samples))
         count += 1
+        blocks -= 1
         if count > max_blocks:
             timestamp = time.time()
             block.append(np.copy(complex_samples))
             size, dtype, compressed = compress(np.concatenate(block))
             info = {'size': size, 'dtype': dtype.name, 'data': compressed}
             await connection.set(timestamp, info)
-            await connection.lpush('timestamps', [timestamp])
+            await connection.lpush('rbds_timestamps', [timestamp])
             await connection.expireat(timestamp, int(timestamp+600))
             print('flushing:', time.time()-last, count)
             block = []
             count = 0
+        if blocks == 0:
+            break
         last = time.time()
 
 async def blocker_main():
@@ -70,7 +74,7 @@ async def blocker_main():
 
     print('Configuring SDR...')
     sdr.rs = 256000
-    sdr.fc = 102.5e6
+    sdr.fc = 89.7e6
     sdr.gain = 50
     print('  sample rate: %0.3f MHz' % (sdr.rs/1e6))
     print('  center frequency %0.6f MHz' % (sdr.fc/1e6))
@@ -78,15 +82,16 @@ async def blocker_main():
 
     print('Streaming bytes...')
     await process_samples(sdr)
-    await sdr.stop()
-    print('Done')
+    sdr.stop()
+    print('Done streaming...')
     sdr.close()
 
 async def decoder_main():
     connection = await asyncio_redis.Connection.create('localhost', 6379, encoder = CborEncoder())
     softlcd = fm.SoftLCD()
     while True:
-        timestamp = await connection.brpop(['timestamps'], 360)
+        timestamp = await connection.brpop(['rbds_timestamps'], 360)
+        print(timestamp)
         timestamp = timestamp.value
         info = await connection.get(timestamp)
         fm.demodulate_array(decompress(**info), softlcd)
