@@ -1,6 +1,6 @@
 asyncio-redis==0.14.3
 blosc==1.5.0
 cbor==1.0.0
-numpy==1.12.0
+numpy==1.21.0
 pyrtlsdr==0.2.4
 scipy==0.18.1
