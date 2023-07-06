@@ -3,4 +3,4 @@ blosc==1.5.0
 cbor==1.0.0
 numpy==1.12.0
 pyrtlsdr==0.2.4
-scipy==0.18.1
+scipy==1.10.0
